@@ -43,21 +43,8 @@ app.use(
 );
 app.use(flash());
 app.get("/", (req, res) => {
-  const mahasiswa = [
-    {
-      nama: "Farid Anwar Wahdie",
-      email: "adie@gmail.com",
-    },
-    {
-      nama: "Adelia citra",
-      email: "adel@gmail.com",
-    },
-    {
-      nama: "Intan Hest",
-      email: "inhes@gmail.com",
-    },
-  ];
-  res.render("index", { nama: "Farid Anwar Wahdie", title: "Home", mahasiswa });
+
+  res.render("index", { nama: "Farid Anwar Wahdie", title: "Home"});
 });
 
 // req (request) = yang kita kirimkan ke express, res (response) : apa yan dikirimkan express ke kita
@@ -152,8 +139,8 @@ app.post(
 );
 
 // delete contact
-app.get("/contact/delete/:nama", (req, res) => {
-  const contact = findContact(req.params.nama);
+app.get("/contact/delete/:id", (req, res) => {
+  const contact = findContact(req.params.id);
 
   //jika kontak tidak ada
   if (!contact) {
@@ -161,21 +148,18 @@ app.get("/contact/delete/:nama", (req, res) => {
     res.send("<h1>404</h1>");
   } else {
     req.flash("msg", "Data kontak berhasil dihapus");
-    deleteContact(req.params.nama);
+    deleteContact(req.params.id);
     res.redirect("/contact");
   }
 });
 
 // detail kontak
-app.get("/contact/:nama", (req, res) => {
-  const contact = findContact(req.params.nama);
+app.get("/contact/:id", (req, res) => {
+  const contact = findContact(req.params.id);
+  console.log(req.params.id);
   res.render("detail", { title: "Detail Contacts", contact });
 });
-app.get("/produk/:id/", (req, res) => {
-  res.send(
-    `Produk id : ${req.params.id} <br> Category : ${req.query.category}`
-  );
-});
+
 
 // akan  selalu dijalankan.Jadi jangan taruh di bagian depan. Ini akan ditampilkan jika kode app.get diatasnya tidak ada
 app.use("/", (req, res) => {
