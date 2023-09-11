@@ -1,0 +1,40 @@
+<%- include('layouts/header') %>
+<%- include('layouts/nav') %>
+<div class="container mt-3">
+      <div class="row">
+        <div class="col-md-6">
+
+          <% if (typeof errors != 'undefined') { %>
+            <div class="alert alert-danger" role="alert">
+              <ul>
+                <% errors.forEach(error => { %>
+                  <li><%= error.msg  %></li>
+                <% }) %>
+              </ul>
+            </div>
+          <% } %>
+              <a href="/contact"class="btn btn-success badge"><%= "<< " %>Kembali ke Daftar Kotak </a>
+              <h2>Form Edit Data Kontak</h2>
+                  <form method="post" action="/contact/update">
+                        <input type="hidden" name="oldNama" value="<%=(contact.oldNama)? contact.oldNama :  contact.nama %>">
+                        <div class="mb-3">
+                          <label for="nama" class="form-label">Nama</label>
+                          <input type="text" class="form-control" id="nama" name="nama" required aria-describedby="namaHelp" value="<%= contact.nama %>">
+                          <div id="namaHelp" class="form-text">Masukkan nama</div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="noHP" class="form-label">No. Handphone</label>
+                          <input type="text" class="form-control" id="noHP" name="noHP" required aria-describedby="nohpHelp" value="<%= contact.noHP %>">
+                          <div id="nohpHelp" class="form-text">Masukkan no. handphone</div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" value="<%= contact.email %>">
+                          <div id="emailHelp" class="form-text">Masukkan email</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Edit Data</button>
+                      </form>
+            </div>
+      </div>
+</div>
+<%- include('layouts/footer') %>

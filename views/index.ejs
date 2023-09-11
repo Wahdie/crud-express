@@ -1,0 +1,22 @@
+<%- include('layouts/header') %>
+<%- include('layouts/nav') %>
+
+      <h1>Persiapan makan</h1>
+      <h2>Halo, nama saya <%= nama %></h2>
+
+      <h2>Berikut daftar artis ternama : </h2>
+      <% if (mahasiswa.length < 1) { %>
+            <p>Data mahasiswa Kosong</p>
+       <%} else { %>
+            <% mahasiswa.forEach(mhs => { %>
+                  <ul>
+                        <li>
+                              Nama : <%= mhs.nama %></li>
+                        </li>
+                        <li>
+                              Nama : <%= mhs.email %></li>
+                        </li>
+                  </ul>  
+            <% }) %>
+       <% } %>
+       <%- include('layouts/footer') %>
